@@ -4,6 +4,8 @@
 #include "TestingGroundsHUD.h"
 #include "Player/FirstPersonCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Navmesh/NavMeshBoundsVolume.h"
+#include "EngineUtils.h"
 
 ATestingGroundsGameMode::ATestingGroundsGameMode()
 	: Super()
@@ -14,4 +16,20 @@ ATestingGroundsGameMode::ATestingGroundsGameMode()
 
 	// use our custom HUD class
 	HUDClass = ATestingGroundsHUD::StaticClass();
+}
+
+void ATestingGroundsGameMode::PopulateBoundsVolumePool()
+{
+	auto VolumeIterator = TActorIterator<ANavMeshBoundsVolume>(GetWorld());
+	while (VolumeIterator)
+	{
+		AddToPool(*VolumeIterator);
+		++VolumeIterator;
+	}
+}
+
+void ATestingGroundsGameMode::AddToPool(ANavMeshBoundsVolume * VolumeToAdd)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Found Actor: %s"), *VolumeToAdd->GetName());
+
 }

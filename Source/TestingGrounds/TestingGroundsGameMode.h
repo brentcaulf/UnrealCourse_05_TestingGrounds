@@ -13,6 +13,13 @@ class ATestingGroundsGameMode : public AGameModeBase
 
 public:
 	ATestingGroundsGameMode();
+
+	UFUNCTION(BlueprintCallable, Category = "Bounds Pool")
+	void PopulateBoundsVolumePool();
+
+private:
+	void AddToPool(class ANavMeshBoundsVolume *VolumeToAdd);
+
 };
 
 
