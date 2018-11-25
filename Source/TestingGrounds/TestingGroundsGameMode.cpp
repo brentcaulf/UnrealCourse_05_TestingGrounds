@@ -6,6 +6,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Navmesh/NavMeshBoundsVolume.h"
 #include "EngineUtils.h"
+#include "ActorPool.h"
 
 ATestingGroundsGameMode::ATestingGroundsGameMode()
 	: Super()
@@ -16,6 +17,8 @@ ATestingGroundsGameMode::ATestingGroundsGameMode()
 
 	// use our custom HUD class
 	HUDClass = ATestingGroundsHUD::StaticClass();
+
+	NavMeshBoundsVolumePool = CreateDefaultSubobject<UActorPool>(FName("Nav Mesh Bounds Volume Pool"));
 }
 
 void ATestingGroundsGameMode::PopulateBoundsVolumePool()
